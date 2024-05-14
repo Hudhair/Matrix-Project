@@ -3,7 +3,6 @@ import java.util.Scanner;
 
 /*
 * Backburner: 
-*   while loop to allow us to constantly ask for matrices...
 *   Format matrices...
 */
 
@@ -28,7 +27,22 @@ public class MatrixProject {
         System.out.print("How many columns are in your second matrix? ");
         column2 = input.nextInt();
         
-        if(column1 == row2){
+        while(column1 != row2){
+                System.out.println("These matrices cannot be multiplied. Re-enter another matrix: ");
+
+                //TAKES IN ROWS AND THEN COLUMNS FOR MATRIX 1
+                System.out.print("How many rows are in your first matrix? ");
+                row1 = input.nextInt();
+                System.out.print("How many columns are in your first matrix? ");
+                column1 = input.nextInt();
+
+                //TAKES IN ROWS AND THEN COLUMNS FOR MATRIX 2
+                System.out.print("How many rows are in your second matrix? ");
+                row2 = input.nextInt();
+                System.out.print("How many columns are in your second matrix? ");
+                column2 = input.nextInt();                
+            }
+
         int[][] matrix1 = new int[row1][column1];
         int[][] matrix2 = new int[row2][column2];
         
@@ -50,12 +64,18 @@ public class MatrixProject {
         System.out.println();
         
         //THIS SECTION PRINTS MATRIX 1
+        System.out.println("_");
         for(int i = 0; i < matrix1.length; i++){
             for(int j = 0;j < matrix1[i].length; j++){
+                if(i=0)
+                    System.out.println("| ");
                 System.out.print(matrix1[i][j]);
+                if(j=matrix1[i].length)
+                    System.out.println(" |");
             }
             System.out.println();
         }
+        System.out.println("-");
         
         System.out.println();
         
@@ -90,11 +110,7 @@ public class MatrixProject {
                     System.out.print(product[i][j]);
                 }
                 System.out.println();
-            }
-
-        }else{
-            //change to While loop later
-            System.out.println("These matrices cannot be multiplied.");
+            
         }
         input.close();
     }
