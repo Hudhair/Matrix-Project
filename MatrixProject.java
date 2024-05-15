@@ -1,13 +1,10 @@
-
 import java.util.Scanner;
-
 /*
 * Backburner: 
 *   Format matrices...
+* 
 */
-
 public class MatrixProject {
-
     public static void main(String[] args) {
         int row1 = 0;
         int column1 = 0;
@@ -49,16 +46,25 @@ public class MatrixProject {
         System.out.println();
         
         //THIS ENTIRE SECTION TAKES IN VALUES FOR MATRIX 1
-        int rowcounterforstring = 1;
-        int columncounterforstring = 1;
-        for(int i = 0; i < matrix1.length; i++){
-            for(int j = 0;j < matrix1[i].length; j++){
-                System.out.print("Enter the value in row "+rowcounterforstring+" and column "+columncounterforstring+" for the first matrix: ");
-                matrix1[i][j] = input.nextInt();
-                columncounterforstring++;
-            }
+        //removing variables and using for loops; row then column
+        /*
+         *  int rowcounterforstring = 1;
+         *  int columncounterforstring = 1;
+         *  for(int i = 0; i < matrix1.length; i++){
+                for(int j = 0;j < matrix1[i].length; j++){
+                    System.out.print("Enter the value in row "+rowcounterforstring+" and column "+columncounterforstring+" for the first matrix: ");
+                    matrix1[i][j] = input.nextInt();
+                    columncounterforstring++;
+                }
             columncounterforstring=1;
             rowcounterforstring++;
+            }
+         */
+        for(int r = 0; r < matrix1.length; r++){
+            for(int c = 0;c < matrix1[r].length; c++){
+                System.out.print("Enter the value in row "+(r+1)+" and column "+(c+1)+" for the first matrix: ");
+                matrix1[r][c] = input.nextInt();
+            }
         }
         
         System.out.println();
@@ -83,16 +89,11 @@ public class MatrixProject {
         System.out.println();
         
         //THIS ENTIRE SECTION TAKES IN VALUES FOR MATRIX 2
-        rowcounterforstring = 1;
-        columncounterforstring = 1;
-        for(int i = 0; i < matrix2.length; i++){
-            for(int j = 0;j < matrix2[i].length; j++){
-                System.out.print("Enter the value in row "+rowcounterforstring+" and column "+columncounterforstring+" for the second matrix: ");
-                matrix2[i][j] = input.nextInt();
-                columncounterforstring++;
+        for(int r = 0; r < matrix2.length; r++){
+            for(int c = 0;c < matrix2[r].length; c++){
+                System.out.print("Enter the value in row "+(r+1)+" and column "+(c+1)+" for the second matrix: ");
+                matrix2[r][c] = input.nextInt();
             }
-            columncounterforstring=1;
-            rowcounterforstring++;
         }
         
         System.out.println();
@@ -137,8 +138,9 @@ public class MatrixProject {
 
     public static int[][] MatrixMultiplier(int[][] matrix1, int[][] matrix2){
         int[][] product = new int[matrix1.length][matrix2[0].length];
-         for (int i = 0; i < matrix1.length; i++) {
-            for (int j = 0; j < matrix2[0].length; j++) {
+         
+        for (int i = 0; i < matrix1.length; i++) {
+            for (int j = 0; j <matrix2[0].length; j++) {
                 for (int k = 0; k < matrix1.length; k++) {
                     product[i][j] += matrix1[i][k] * matrix2[k][j];
                 }
