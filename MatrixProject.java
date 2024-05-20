@@ -135,5 +135,17 @@ public class MatrixProject {
         }
         return product;
     }
+
+    //I have not tested to see if this works
+    public static int[][] MatrixAddition(int[][] matrix1, int[][] matrix2){ 
+        int[][] sum = new int[martix1.length][matrix2[0].length];
+
+        for(int row = 0; row < matrix1.length; row++){
+            for(int col = 0; col < matrix2[0].length; col++){
+                sum[row][col] += matrix1[row][col] + matrix2[row][col];
+            }
+        }
+        return sum;
+    }
     
 }
