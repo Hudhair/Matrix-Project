@@ -228,7 +228,6 @@ public class MatrixProject {
         return product;
     }
 
-    //I have not tested to see if this works
     public static double[][] MatrixAddition(double[][] matrix1, double[][] matrix2){ 
         double[][] sum = new double[matrix1.length][matrix2[0].length];
 
