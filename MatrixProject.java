@@ -13,15 +13,15 @@ public class MatrixProject {
         Scanner input = new Scanner(System.in);
         
         //Ask if matrix addition and multiplcation:
-        System.out.println("Would you like to add matrices or multiply them.");
-        System.out.println("Type 1 for Multiplcation or Type 2 for Addition");
-        int addOrMul = input.nextInt();
+        System.out.println("What mathematical operation would you like to use?");
+        System.out.println("Enter 1 for Multiplcation, 2 for Addition, or 3 for Subtraction. ");
+        int operation = input.nextInt();
 
         //Checker to ensure 1 or 2 has been entered
-        while (addOrMul != 1 && addOrMul !=2 ){
-            System.out.println("We can only add or multiply...");
-            System.out.println("Type 1 for Multiplcation or Type 2 for Addition");
-            addOrMul = input.nextInt();
+        while (operation != 1 && operation !=2 && operation !=3){
+            System.out.println("We can only multiply, add, or subtract...");
+            System.out.println("Enter 1 for Multiplcation, 2 for Addition, or 3 for Subtraction. ");
+            operation = input.nextInt();
         }
 
         //TAKES IN ROWS AND THEN COLUMNS FOR MATRIX 1
@@ -37,7 +37,7 @@ public class MatrixProject {
         column2 = input.nextInt();
         
         //For matrix multiplcation check and ask if to instead add
-        if(addOrMul == 1){
+        if(operation == 1){
             while(column1 != row2){
                 System.out.println("These matrices cannot be multiplied. Re-enter another matrices: ");
 
@@ -55,9 +55,27 @@ public class MatrixProject {
             }
         } 
         //for matrix multiplcation: ensures that we can add and also asks to multiply instead
-        if(addOrMul == 2){
+        if(operation == 2){
             while(column1 != column2 || row1 != row2){
                 System.out.println("These matrices cannot be added. Re-type other matrices: ");
+
+                //TAKES IN ROWS AND THEN COLUMNS FOR MATRIX 1
+                System.out.print("How many rows are in your first matrix? ");
+                row1 = input.nextInt();
+                System.out.print("How many columns are in your first matrix? ");
+                column1 = input.nextInt();
+
+                //TAKES IN ROWS AND THEN COLUMNS FOR MATRIX 2
+                System.out.print("How many rows are in your second matrix? ");
+                row2 = input.nextInt();
+                System.out.print("How many columns are in your second matrix? ");
+                column2 = input.nextInt();  
+            }
+        }
+
+        if(operation == 3){
+            while(column1 != column2 || row1 != row2){
+                System.out.println("These matrices cannot be subtracted. Re-type other matrices: ");
 
                 //TAKES IN ROWS AND THEN COLUMNS FOR MATRIX 1
                 System.out.print("How many rows are in your first matrix? ");
@@ -134,9 +152,9 @@ public class MatrixProject {
         }
         System.out.println();
 
-        //THIS SECTION CREATES THE PRODUCT/SUM MATRIX AND PRINTS IT
+        //THIS SECTION CREATES THE PRODUCT/SUM/DIFFERENCE MATRIX AND PRINTS IT
 
-        if(addOrMul == 1) {
+        if(operation == 1) {
             double [][]product = MatrixMultiplier(matrix1, matrix2);
             
             System.out.println("Product Matrix: ");
@@ -155,7 +173,7 @@ public class MatrixProject {
             }
         }
 
-        if(addOrMul == 2){
+        if(operation == 2){
             double[][] sum = MatrixAddition(matrix1,matrix2);
 
             System.out.println("Sum Matrix: ");
@@ -168,6 +186,25 @@ public class MatrixProject {
                         System.out.print(", ");
                     }
                     if(c==sum[r].length-1)
+                        System.out.print(" ]");
+                }
+                System.out.println();
+            }     
+        } 
+
+        if(operation == 3){
+            double[][] difference = MatrixSubtraction(matrix1,matrix2);
+
+            System.out.println("Difference Matrix: ");
+            for(int r = 0; r < difference.length; r++){
+                for(int c = 0; c < difference[r].length; c++){
+                    if(c==0)
+                        System.out.print("[ ");
+                    System.out.print(difference[r][c]);
+                    if(c!=difference[r].length-1){
+                        System.out.print(", ");
+                    }
+                    if(c==difference[r].length-1)
                         System.out.print(" ]");
                 }
                 System.out.println();
@@ -201,6 +238,17 @@ public class MatrixProject {
             }
         }
         return sum;
+    }
+
+    public static double[][] MatrixSubtraction(double[][] matrix1, double[][] matrix2){ 
+        double[][] difference = new double[matrix1.length][matrix2[0].length];
+
+        for(int row = 0; row < matrix1.length; row++){
+            for(int col = 0; col < matrix2[0].length; col++){
+                difference[row][col] += matrix1[row][col] - matrix2[row][col];
+            }
+        }
+        return difference;
     }
     
 }
